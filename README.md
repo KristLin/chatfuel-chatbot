@@ -10,6 +10,7 @@
 - **Docker**
 
 # To Deploy
+## More details in 'deployment_instruction.pdf'
 ### Build 3 docker images
 ```
 docker build -t chatbot .
