@@ -1,5 +1,5 @@
 # Intro:
-- A simple electron based music player.
+- A simple dentist chatbot based on RiveScript and Chatfuel.
 - This project is just for learning.
 
 # Technology Stack:
@@ -9,10 +9,13 @@
 - **RiveScript**
 - **Docker**
 
-
 # To Deploy
-### Build 3 docker images ('service_name' is the folder name)
-``` docker build -t service_name . ```
+### Build 3 docker images
+```
+docker build -t chatbot .
+docker build -t dentist .
+docker build -t timeslot .
+```
 ### Create docker network
 ``` docker network create my_network ```
 ### Run containers
@@ -22,9 +25,9 @@ docker run --name dentist -p 4000:4000 --network my_network -t dentist
 docker run --name timeslot -p 3000:3000 --network my_network -t timeslot
 ```
 ### Test Endpoint
--***chatbot***:  http://127.0.0.1:5000/static/swagger-ui/index.html
--***dentist***:  http://127.0.0.1:4000/static/swagger-ui/index.html
--***timeslot***:  http://127.0.0.1:3000/static/swagger-ui/index.html
+- ***chatbot***:  http://127.0.0.1:5000/static/swagger-ui/index.html
+- ***dentist***:  http://127.0.0.1:4000/static/swagger-ui/index.html
+- ***timeslot***:  http://127.0.0.1:3000/static/swagger-ui/index.html
 
 # Examples
 ### Greeting & Basic Conversation
