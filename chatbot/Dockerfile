@@ -1,4 +1,4 @@
-FROM python:3.7.0
+FROM python:3.6.4
 WORKDIR /service
 COPY ./app /service
 RUN pip3 install -r requirements.txt
