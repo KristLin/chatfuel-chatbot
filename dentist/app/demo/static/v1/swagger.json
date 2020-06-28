@@ -1,0 +1,105 @@
+{
+  "swagger": "2.0",
+  "basePath": "/v1",
+  "info": {
+    "version": "1.0.0",
+    "title": "Dentist Service",
+    "description": "Dentist Information"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "tags": [
+    {
+      "name": "Dentists",
+      "description": "Dentists Info"
+    }
+  ],
+  "paths": {
+    "/dentists": {
+      "get": {
+        "operationId": "get_dentists",
+        "summary": "Gets the list of dentists",
+        "tags": [
+          "Dentists"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "post": {
+        "operationId": "add_dentist",
+        "summary": "Adds a dentist",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "dentist_info",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "dentist_name": {
+                  "type": "string",
+                  "description": "Jack/Janis"
+                },
+                "location": {
+                  "type": "string",
+                  "description": "Sydney/Melbourne"
+                },
+                "specialization": {
+                  "type": "string",
+                  "description": "Dentistry/Orthodontics/Oral Surgery"
+                }
+              }
+            }
+          }
+        ],
+        "tags": [
+          "Dentists"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/dentists/{dentist_name}": {
+      "get": {
+        "operationId": "get_dentist_info",
+        "summary": "Gets the dentist's information",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "dentist_name",
+            "type": "string",
+            "required": true,
+            "description": "The name of the dentist"
+          }
+        ],
+        "tags": [
+          "Dentists"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    }
+  }
+}

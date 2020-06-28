@@ -1,0 +1,147 @@
+! version = 2.0
+
+// === greetings ===
++ hi bot
+- hi user!
+- hello user!
+- bonjour!
+- hi, what can I help you?
+- hi, need any help?
+
++ (hi|hello)
+@ hi bot
+
++ how are you
+- I'm good, how are you?
+
++ who are you
+- I'm a chatbot here to help you make reservation for dentist :)
+
++ where are you from
+- I'm from my country :)
+
++ my name is *
+- oh hey <star>
+- how are you <star>?
+- hi <star>, what can I help you?
+
++ i am (happy|exited|trilled)
+- I am happy too for you.
+
++ [what is|whats] your name
+- I am just a bot, just call me bot then :)
+
++ thank you
+- you are welcome
+- welcome
+- no problem
+- no worries
+
++ thanks
+@ thank you
+
++ thanks a lot
+@ thank you
+
+// === weather ===
+// using OneWeatherMap
++ weather in *
+- <call>get_weather <star></call>
+
++ how is the weather in *
+@ weather in <star>
+
++ what is the weather [like] in *
+@ weather in <star>
+
++ * weather
+@ weather in <star>
+
+// === dentist reservation ===
++ i (want|would like) to make [a] [dentist] (reservation|appointment)
+- Sure! {@ how many dentists are there}
+
++ i [would like to|will|would] (choose|pick|prefer) [dentist] *
+- {@ show me <star2> time}
+
++ how many dentists [are] there
+- <call>get_all_dentists</call>
+
++ (show|tell) me all [the] dentists
+@ how many dentists are there
+
++ (show|tell) me [more] about [the] *
+- <call>get_dentist_info <star2></call>
+
++ (show|tell) me [the] (info|information) [of|about] [dentist] *
+@ tell me more about <star3>
+
++ (show|tell) me * [available] time
+- <call>get_dentist_available_timeslots <star2></call>
+
++ (reserve|book) * * *
+- <call>reserve_timeslot <star2> <star3> <star4></call>
+
++ [can you|could you] (reserve|book) [dentist] * on * * [for me]
+@ book <star2> <star3> <star4>
+
++ cancel * * *
+- <call>cancel_timeslot <star1> <star2> <star3></call>
+
++ [can you|could you] cancel [dentist] * on * * [for me]
+@ cancel <star1> <star2> <star3>
+
++ [can you|could you] cancel [the] appointment [with id] * [for me]
+- <call>cancel_timeslot_by_id <star></call>
+
++ [show|tell] me [the] [info|information] [of|about] appointment *
+- <call>check_appointment <star></call>
+
+// ======== python object ========
+// ======== weather ========
+> object get_weather python
+    from v1.api.brain import weather
+    return weather.get_weather(args[0])
+< object
+
+// == dentist ==
+> object get_all_dentists python
+    from v1.api.brain import dentist
+    return dentist.get_all_dentists()
+< object
+
+> object get_dentist_info python
+    from v1.api.brain import dentist
+    return dentist.get_dentist_info(args[0])
+< object
+
+// == timeslot ==
+> object get_dentist_available_timeslots python
+    from v1.api.brain import timeslot
+    return timeslot.get_dentist_available_timeslots(args[0])
+< object
+
+> object reserve_timeslot python
+    from v1.api.brain import timeslot
+    return timeslot.reserve_timeslot(args[0], args[1], args[2])
+< object
+
+> object cancel_timeslot python
+    from v1.api.brain import timeslot
+    return timeslot.cancel_timeslot(args[0], args[1], args[2])
+< object
+
+> object cancel_timeslot_by_id python
+    from v1.api.brain import timeslot
+    return timeslot.cancel_timeslot_by_id(args[0])
+< object
+
+> object check_appointment python
+    from v1.api.brain import timeslot
+    return timeslot.check_appointment(args[0])
+< object
+
+> object save_dentist python
+    from v1.api.brain import save_data
+    return save_data.save_dentist(args[0])
+< object

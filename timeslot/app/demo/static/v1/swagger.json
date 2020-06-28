@@ -1,0 +1,261 @@
+{
+  "swagger": "2.0",
+  "basePath": "/v1",
+  "info": {
+    "version": "1.0.0",
+    "title": "Timeslot Service",
+    "description": "Timeslots and Appointment Management"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "tags": [
+    {
+      "name": "Timeslots",
+      "description": "Timeslots Info"
+    },
+    {
+      "name": "Appointments",
+      "description": "Manage Appointments"
+    }
+  ],
+  "paths": {
+    "/timeslots": {
+      "get": {
+        "operationId": "get_all_timeslots",
+        "summary": "Gets all dentists' time slots",
+        "tags": [
+          "Timeslots"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "post": {
+        "operationId": "add_timeslots",
+        "summary": "Add timeslots to the new dentist",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "dentist_name_info",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "dentist_name": {
+                  "type": "string",
+                  "description": "jack/janis"
+                }
+              }
+            }
+          }
+        ],
+        "tags": [
+          "Timeslots"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/timeslots/{dentist_name}": {
+      "get": {
+        "operationId": "get_dentist_timeslots",
+        "summary": "Gets the dentist's time slots",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "dentist_name",
+            "type": "string",
+            "required": true,
+            "description": "The name of the dentist"
+          }
+        ],
+        "tags": [
+          "Timeslots"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/timeslots/{dentist_name}/available": {
+      "get": {
+        "operationId": "get_dentist_available_timeslots",
+        "summary": "Gets the dentist's available time slots",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "dentist_name",
+            "type": "string",
+            "required": true,
+            "description": "The name of the dentist"
+          }
+        ],
+        "tags": [
+          "Timeslots"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/appointments/book": {
+      "post": {
+        "operationId": "book_appointment",
+        "summary": "Books an appointment",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "appointment_info",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "dentist_name": {
+                  "type": "string",
+                  "description": "jack/janis"
+                },
+                "date": {
+                  "type": "string",
+                  "description": "dd/mm/yy"
+                },
+                "timeslot": {
+                  "type": "string",
+                  "description": "9-10/12-13/16-17"
+                }
+              }
+            }
+          }
+        ],
+        "tags": [
+          "Appointments"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/appointments/cancel": {
+      "post": {
+        "operationId": "cancel_appointment",
+        "summary": "Cancels an appointment",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "appointment_info",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "dentist_name": {
+                  "type": "string",
+                  "description": "jack/janis"
+                },
+                "date": {
+                  "type": "string",
+                  "description": "dd/mm/yy"
+                },
+                "timeslot": {
+                  "type": "string",
+                  "description": "9-10/12-13/16-17"
+                }
+              }
+            }
+          }
+        ],
+        "tags": [
+          "Appointments"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/appointments/{appointment_id}/cancel": {
+      "get": {
+        "operationId": "cancel_appointment_by_id",
+        "summary": "Cancels an appointment by id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "appointment_id",
+            "type": "string",
+            "required": true,
+            "description": "The id of the appointment"
+          }
+        ],
+        "tags": [
+          "Appointments"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/appointments/{appointment_id}": {
+      "get": {
+        "operationId": "get_appointment_info",
+        "summary": "Get the appointment information by id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "appointment_id",
+            "type": "string",
+            "required": true,
+            "description": "The id of the appointment"
+          }
+        ],
+        "tags": [
+          "Appointments"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    }
+  }
+}

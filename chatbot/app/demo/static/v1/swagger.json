@@ -1,0 +1,44 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Chatbot Service",
+    "description": "Rull-based Chatbot for Helping Client"
+  },
+  "basePath": "/v1",
+  "consumes": [
+    "multipart/form-data"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "tags": [
+    {
+      "name": "Chat",
+      "description": "Chatting with bot"
+    }
+  ],
+  "paths": {
+    "/ask": {
+      "post": {
+        "tags": [
+          "Chat"
+        ],
+        "summary": "send message to chatbot",
+        "parameters": [
+          {
+            "name": "message",
+            "in": "formData",
+            "description": "User's input",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}
